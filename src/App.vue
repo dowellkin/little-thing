@@ -1,28 +1,64 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+		<aside class='aside'>
+			<menu-wrapper />
+		</aside>
+		<main class="main">
+			content
+		</main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import menuWrapper from './components/menu/menuWrapper.vue';
 
 export default {
-  name: 'App',
+  name: "App",
+  mounted() {
+    this.$store.dispatch("fetchParams");
+  },
   components: {
-    HelloWorld
-  }
-}
+		menuWrapper
+	},
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
+	display: flex;
+	height: 100%;
+	align-items: stretch;
 }
+
+.aside{
+	flex: 1;
+	max-width: 250px;
+	
+	border-right: 1px solid rgba(0,0,0,.2);
+}
+
+.main{
+	flex: 1;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+html{
+	box-sizing: border-box;
+}
+
+*, *::before, *::after{
+	box-sizing: inherit;
+}
+
 </style>
